@@ -13,14 +13,14 @@
 .logo a {
   display: inline-block;
   font-size: 20px;
-  padding: 21px 10px;
+  padding: 25px 10px;
   text-transform: capitalize;
 }
 
 .leftMenu .ant-menu-item {
-  padding: 15px 10px;
+  padding: 10px 10px;
 }
 
 .selectMenu {
-  padding: 20px 5px;
+  padding: 15px 5px;
 }
