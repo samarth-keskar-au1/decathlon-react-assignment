@@ -6,6 +6,7 @@ import ImageRow from "../../components/ImageRow";
 import Loader from "react-spinners/PropagateLoader";
 import HeadlineCard from "../../components/HeadlineCard";
 import QueueAnim from "rc-queue-anim";
+import { API_KEY } from "../../constants/constants";
 
 function Post({ router }) {
   let data = router.query;
@@ -15,7 +16,7 @@ function Post({ router }) {
     async function fetchRelatedArticles() {
       setIsLoading(true);
       const res = await fetch(
-        `https://newsapi.org/v2/top-headlines?language=en&apiKey=${process.env.API_KEY}&pageSize=5`
+        `https://newsapi.org/v2/top-headlines?language=en&apiKey=${API_KEY}&pageSize=5`
       );
       const relatedArticles = await res.json();
       setArticles(relatedArticles.articles);

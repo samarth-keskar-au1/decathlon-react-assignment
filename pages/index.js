@@ -5,7 +5,7 @@ import InfiniteLoader from "react-infinite-loader";
 import { css } from "@emotion/core";
 import Loader from "react-spinners/PropagateLoader";
 import QueueAnim from "rc-queue-anim";
-
+import { API_KEY } from "../constants/constants";
 export default function Home(props) {
   let [articles, setArticles] = useState(props.data.articles);
   let [totalResults, setTotalResults] = useState(props.data.totalResults);
@@ -25,14 +25,14 @@ export default function Home(props) {
     async function fetchChangedSourceData() {
       setIsLoading(true);
       const res = await fetch(
-        `https://newsapi.org/v2/top-headlines?sources=${props.currentSource}&apiKey=${process.env.API_KEY}&pageSize=8&page=1`
+        `https://newsapi.org/v2/top-headlines?sources=${props.currentSource}&apiKey=${API_KEY}&pageSize=8&page=1`
       );
       const data = await res.json();
 
       setArticles(data.articles ? data.articles : null);
       setTotalResults(data.totalResults);
       setUrl(
-        `https://newsapi.org/v2/top-headlines?sources=${props.currentSource}&apiKey=${process.env.API_KEY}&pageSize=8`
+        `https://newsapi.org/v2/top-headlines?sources=${props.currentSource}&apiKey=${API_KEY}&pageSize=8`
       );
       setCurrentPageNumber(2);
       setIsLoading(false);
@@ -48,7 +48,7 @@ export default function Home(props) {
     if (articles.length < totalResults) {
       let finalUrl = url
         ? url + `&page=${currentPageNumber}`
-        : `https://newsapi.org/v2/top-headlines?language=en&country=us&apiKey=${process.env.API_KEY}&pageSize=8&page=${currentPageNumber}`;
+        : `https://newsapi.org/v2/top-headlines?language=en&country=us&apiKey=${API_KEY}&pageSize=8&page=${currentPageNumber}`;
       setIsLoading(true);
       const res = await fetch(finalUrl);
       setCurrentPageNumber(currentPageNumber + 1);
@@ -102,7 +102,7 @@ export default function Home(props) {
 }
 export async function getServerSideProps() {
   const res = await fetch(
-    `https://newsapi.org/v2/top-headlines?language=en&country=us&apiKey=${process.env.API_KEY}&pageSize=8&page=1`
+    `https://newsapi.org/v2/top-headlines?language=en&country=us&apiKey=${API_KEY}&pageSize=8&page=1`
   );
   let data = await res.json();
   if (!data.articles) data = {};

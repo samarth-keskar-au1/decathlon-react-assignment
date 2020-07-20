@@ -1,6 +1,6 @@
 import { Menu, Select } from "antd";
 import { useState, useEffect } from "react";
-
+import { API_KEY } from "../constants/constants";
 const { Option } = Select;
 
 function Navbar(props) {
@@ -14,7 +14,7 @@ function Navbar(props) {
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        `https://newsapi.org/v2/sources?language=en&country=us&apiKey=${process.env.API_KEY}`
+        `https://newsapi.org/v2/sources?language=en&country=us&apiKey=${API_KEY}`
       );
       const sources = await res.json();
       setSources(sources.sources);
